@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+#define TAM 5
+
+void imprimirMatriz(int matriz[TAM][TAM]) {
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void habilidadeCone() {
+    int matriz[TAM][TAM] = {0};
+
+    // Ponto central na linha 2 (linha do meio)
+    int centro = TAM / 2;
+
+    for (int i = 0; i <= centro; i++) {
+        for (int j = centro - i; j <= centro + i; j++) {
+            matriz[i + centro][j] = 3;
+        }
+    }
+
+    printf("Exemplo de saída de habilidade em cone:\n");
+    imprimirMatriz(matriz);
+    printf("\n");
+}
+
+void habilidadeCruz() {
+    int matriz[TAM][TAM] = {0};
+    int centro = TAM / 2;
+
+    for (int i = 0; i < TAM; i++) {
+        matriz[centro][i] = 3; // linha central
+        matriz[i][centro] = 3; // coluna central
+    }
+
+    printf("Exemplo de saída de habilidade em cruz:\n");
+    imprimirMatriz(matriz);
+    printf("\n");
+}
+
+void habilidadeOctaedro() {
+    int matriz[TAM][TAM] = {0};
+    int centro = TAM / 2;
+
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
+            if (abs(i - centro) + abs(j - centro) <= 2) {
+                matriz[i][j] = 3;
+            }
+        }
+    }
+
+    printf("Exemplo de saída de habilidade em octaedro:\n");
+    imprimirMatriz(matriz);
+    printf("\n");
+}
+
+int main() {
+    habilidadeCone();
+    habilidadeCruz();
+    habilidadeOctaedro();
+    return 0;
+}
